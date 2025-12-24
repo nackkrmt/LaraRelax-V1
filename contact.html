@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lara Relax – Contact</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fonts + Shared CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="lara-relax-shared.css" />
+
+  <style>
+    /* ========= Contact page specific styles ========= */
+
+    main {
+      background: var(--color-bg);
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    @media (max-width: 720px) {
+      section {
+        padding: 56px 0;
+      }
+    }
+
+    /* Hero banner (ภาพแนวนอน ไม่มีข้อความ) */
+    #hero-contact {
+      padding: 0;
+      background: var(--color-primary-dark);
+    }
+
+    .hero-contact-image {
+      height: 42vh;
+      min-height: 260px;
+      max-height: 520px;
+      background: linear-gradient(135deg, #5b3820, #d4a373);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-contact-image::after {
+      content: "Contact hero image placeholder";
+      color: #fff;
+      font-size: 0.9rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    /* Section header (ใช้โทนเดียวกับหน้าอื่น) */
+    .section-header {
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto 32px;
+    }
+
+    .section-title {
+      font-size: 1.9rem;
+      margin: 0 0 10px;
+      color: var(--color-primary-dark);
+    }
+
+    .section-subtitle {
+      font-size: 0.98rem;
+      color: var(--color-text);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* 5.1 Hero copy (ข้อความ) */
+    #contact-hero-text {
+      background: #fdf5ec;
+    }
+
+    /* 5.2 ช่องทางการจอง & สอบถาม */
+    #contact-channels {
+      background: var(--color-bg);
+    }
+
+    .contact-channels-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .contact-channels-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .contact-channels-header h2 {
+      font-size: 1.5rem;
+      margin: 0 0 6px;
+      color: var(--color-primary-dark);
+    }
+
+    .contact-channels-header p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--color-muted);
+    }
+
+    .contact-channel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    @media (max-width: 960px) {
+      .contact-channel-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .contact-channel-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .contact-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px 20px;
+      font-size: 0.95rem;
+      color: var(--color-text);
+    }
+
+    .contact-card-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-muted);
+      margin-bottom: 6px;
+    }
+
+    .contact-card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--color-primary-dark);
+      margin-bottom: 6px;
+    }
+
+    .contact-card-main {
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .contact-card-text {
+      font-size: 0.9rem;
+      color: var(--color-text);
+    }
+
+    /* กล่องข้อความย้ำสำคัญ */
+    .important-note {
+      margin-top: 28px;
+      border-radius: 20px;
+      padding: 14px 18px;
+      background: #fff4e3;
+      border: 1px solid rgba(212, 163, 115, 0.6);
+      font-size: 0.9rem;
+      color: var(--color-primary-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .important-note span.icon {
+      font-size: 1.2rem;
+    }
+
+    /* ปุ่มแบบ pill (reuse style จาก gallery/services) */
+    #contact-cta-pill {
+      background: #f8efe3;
+    }
+
+    .contact-cta-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-cta-inner h2 {
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+      color: var(--color-primary-dark);
+    }
+
+    .contact-cta-inner p {
+      margin: 0 0 24px;
+      font-size: 0.96rem;
+      color: var(--color-muted);
+    }
+
+    .contact-pill-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .contact-pill {
+      min-width: 230px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      border: 2px solid rgba(91, 56, 32, 0.25);
+      background: #fdf5ec;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 14px;
+      font-size: 0.98rem;
+      font-weight: 500;
+      color: var(--color-primary-dark);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.06);
+    }
+
+    .contact-pill-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .contact-pill-active {
+      background: var(--color-primary-dark);
+      border-color: var(--color-primary-dark);
+      color: #ffffff;
+    }
+
+    .contact-pill-active .contact-pill-dot {
+      background: #ffffff;
+    }
+
+    .contact-cta-note {
+      font-size: 0.9rem;
+      color: var(--color-muted);
+    }
+
+    /* 5.3 Location & Map */
+    #contact-location {
+      background: var(--color-bg);
+    }
+
+    .location-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .location-inner h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: var(--color-primary-dark);
+    }
+
+    .location-inner p {
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-size: 0.95rem;
+      color: var(--color-text);
+    }
+
+    .map-wrapper {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      background: #e0d0c3;
+    }
+
+    .map-iframe {
+      width: 100%;
+      height: 360px;
+      border: 0;
+      display: block;
+    }
+
+    .map-placeholder {
+      padding: 40px;
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--color-muted);
+    }
+
+    /* 5.4 Opening hours */
+    #contact-hours {
+      background: #fdf5ec;
+    }
+
+    .hours-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hours-inner h2 {
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+      color: var(--color-primary-dark);
+    }
+
+    .hours-main {
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: var(--color-text);
+    }
+
+    .hours-time {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--color-primary-dark);
+      margin-bottom: 10px;
+    }
+
+    .hours-note {
+      font-size: 0.9rem;
+      color: var(--color-muted);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header (shared) -->
+  <header class="site-header">
+    <div class="container nav">
+      <div class="logo">Lara Relax</div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About us</a>
+        <a href="services.html">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+      <div class="lang-switcher" aria-label="Language selector">
+        <select class="lang-select">
+          <option value="en" selected>English</option>
+          <option value="th">ไทย</option>
+          <option value="ru">Русский</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Banner -->
+    <section id="hero-contact" aria-label="Contact hero">
+      <div class="hero-contact-image"></div>
+    </section>
+
+    <!-- 5.1 Hero text -->
+    <section id="contact-hero-text">
+      <div class="container">
+        <div class="section-header">
+          <h1 class="section-title">ทักหาเรา เมื่อต้องการพัก</h1>
+          <p class="section-subtitle">
+            ไม่ว่าคุณจะอยากนวดคลายเมื่อย ทำเล็บสวย ๆ หรือจัดสปามือ–เท้าแบบเต็มเซต
+            แค่ทักแชทมาหาเรา ทีม Lara Relax พร้อมช่วยแนะนำและเช็กคิวให้ค่ะ
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5.2 ช่องทางติดต่อ -->
+    <section id="contact-channels">
+      <div class="container contact-channels-inner">
+        <div class="contact-channels-header">
+          <h2>ช่องทางการจอง &amp; สอบถาม</h2>
+          <p>เลือกช่องทางที่สะดวกที่สุดสำหรับคุณ แล้วทักมาพูดคุยกับทีมงานได้เลย</p>
+        </div>
+
+        <div class="contact-channel-grid">
+          <!-- Line -->
+          <article class="contact-card">
+            <div class="contact-card-label">Line</div>
+            <div class="contact-card-title">Line Official Account</div>
+            <div class="contact-card-main">
+              แอด Line: <strong>[ใส่ Line ID หรือ QR Code]</strong>
+            </div>
+            <p class="contact-card-text">
+              ทักมาบอกบริการที่ต้องการ เลือกวัน–เวลาโดยประมาณ
+              แล้วรอทีมงานเช็กคิวและยืนยันกลับให้ค่ะ
+            </p>
+          </article>
+
+          <!-- WhatsApp -->
+          <article class="contact-card">
+            <div class="contact-card-label">WhatsApp</div>
+            <div class="contact-card-title">WhatsApp Chat</div>
+            <div class="contact-card-main">
+              WhatsApp: <strong>[ใส่เบอร์โทรศัพท์]</strong>
+            </div>
+            <p class="contact-card-text">
+              สะดวกแชทเป็นภาษาอังกฤษก็ได้
+              เราพร้อมช่วยคุณเลือกบริการที่เหมาะที่สุดและช่วยเช็กคิวให้
+            </p>
+          </article>
+
+          <!-- Messenger -->
+          <article class="contact-card">
+            <div class="contact-card-label">Messenger</div>
+            <div class="contact-card-title">Facebook Page</div>
+            <div class="contact-card-main">
+              Messenger: <strong>[ใส่ลิงก์เพจ]</strong>
+            </div>
+            <p class="contact-card-text">
+              อินบ็อกซ์ถามโปรโมชัน อัปเดตสีเล็บใหม่ ๆ
+              หรือจองคิวล่วงหน้าได้ที่นี่
+            </p>
+          </article>
+        </div>
+
+        <div style="text-align: center; margin-top: 28px;">
+          <div class="important-note">
+            <span class="icon">🔔</span>
+            <span>
+              ขณะนี้ Lara Relax รับจองคิวผ่าน Line, WhatsApp และ Messenger เท่านั้น – ไม่มีระบบจองผ่านเว็บไซต์
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ปุ่มแบบ pill (เหมือนหน้าอื่น) -->
+    <section id="contact-cta-pill">
+      <div class="container contact-cta-inner">
+        <h2>พร้อมพักเมื่อไหร่ แค่ทักหาเรา 💬</h2>
+        <p>เลือกช่องทางที่คุณถนัดที่สุด แล้วทิ้งรายละเอียดไว้ให้เราได้เลย</p>
+
+        <div class="contact-pill-row">
+          <a href="#" class="contact-pill contact-pill-active">
+            <span class="contact-pill-dot"></span>
+            <span>Line (LineOA)</span>
+          </a>
+          <a href="https://wa.me/+66xxxxxxxxx" class="contact-pill">
+            <span class="contact-pill-dot"></span>
+            <span>WhatsApp</span>
+          </a>
+          <a href="#" class="contact-pill">
+            <span class="contact-pill-dot"></span>
+            <span>Messenger</span>
+          </a>
+        </div>
+
+        <p class="contact-cta-note">
+          เพียงระบุบริการที่ต้องการ วัน–เวลาคร่าว ๆ และชื่อเล่นของคุณ
+          ทีมงานจะช่วยเช็กคิวและยืนยันกลับให้ทางแชท
+        </p>
+      </div>
+    </section>
+
+    <!-- 5.3 Location & Map -->
+    <section id="contact-location">
+      <div class="container location-inner">
+        <h2>ที่ตั้ง Lara Relax</h2>
+        <p>
+          [ใส่ที่อยู่ร้าน เช่น โครงการ/ซอย/ถนน/แลนด์มาร์กใกล้เคียง]  
+          เดินทางสะดวกด้วย [ใส่รถไฟฟ้า/ที่จอดรถ ฯลฯ]
+        </p>
+
+        <div class="map-wrapper">
+          <!-- แทนที่ src ด้วย Google Maps Embed จริงของร้าน -->
+          <iframe
+            class="map-iframe"
+            src="https://www.google.com/maps/embed?pb=[YOUR_GOOGLE_MAPS_EMBED_CODE]"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5.4 Opening hours -->
+    <section id="contact-hours">
+      <div class="container hours-inner">
+        <h2>เวลาเปิดให้บริการ</h2>
+        <p class="hours-main">เปิดบริการทุกวัน</p>
+        <p class="hours-time">⏰ [เช่น 10:00–21:00 น.]</p>
+        <p class="hours-note">
+          ช่วงวันเสาร์–อาทิตย์และวันหยุดแนะนำให้จองล่วงหน้า เพราะคิวอาจแน่นเป็นพิเศษ
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © Lara Relax – Massage, Spa &amp; Nail Studio. All rights reserved.
+  </footer>
+</body>
+</html>
